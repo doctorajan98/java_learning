@@ -2,9 +2,12 @@ package com.khairulazanni;
 
 public class Employee {
     private int baseSalary;
-
-
     private int hourlyRate;
+
+    public Employee(int baseSalary, int hourlyRate) {
+        setBaseSalary(baseSalary);
+        setHourlyRate(hourlyRate);
+    }
 
     private void checkValue(int value) {
         if (value <= 0) {
@@ -12,7 +15,7 @@ public class Employee {
         }
     }
 
-    public void setBaseSalary(int baseSalary){
+    private void setBaseSalary(int baseSalary){
         checkValue(baseSalary);
         this.baseSalary = baseSalary;
     }
@@ -21,7 +24,7 @@ public class Employee {
         return baseSalary;
     }
 
-    public void setHourlyRate(int hourlyRate){
+    private void setHourlyRate(int hourlyRate){
         checkValue(hourlyRate);
         this.hourlyRate = hourlyRate;
     }
