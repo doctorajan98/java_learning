@@ -1,5 +1,9 @@
 package com.khairulazanni.l2_section2;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MortgageCalculator {
     final byte MONTHS_IN_YEAR = 12;
     final byte PERCENT = 100;
@@ -14,9 +18,17 @@ public class MortgageCalculator {
         this.years = years;
     }
 
+    public double[] getMortgageBalance(){
+        var remainingBalance = new double[getNumberOfPayment()];
+        for (short month = 1; month <= remainingBalance.length; month++) {
+            remainingBalance[month - 1] = calculateBalance(month);
+        }
+        return remainingBalance;
+    }
+
     public double calculateBalance(short numberOfPaymentsMade) {
-        float monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
-        float numberOfPayments = years * MONTHS_IN_YEAR;
+        float monthlyInterest = getMonthlyInterest();
+        float numberOfPayments = getNumberOfPayment();
 
         return principal
                 * (Math.pow(1 + monthlyInterest, numberOfPayments) - Math.pow(1 + monthlyInterest, numberOfPaymentsMade))
@@ -24,8 +36,8 @@ public class MortgageCalculator {
     }
 
     public double calculateMortgage() {
-        float monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
-        float numberOfPayments = years * MONTHS_IN_YEAR;
+        float monthlyInterest = getMonthlyInterest();
+        float numberOfPayments = getNumberOfPayment();
 
         return principal
                 * (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments))
@@ -38,5 +50,13 @@ public class MortgageCalculator {
 
     public short getMonthsInYear() {
         return MONTHS_IN_YEAR;
+    }
+
+    private float getMonthlyInterest(){
+        return (annualInterest / PERCENT / getMonthsInYear());
+    }
+
+    private int getNumberOfPayment(){
+        return years * MONTHS_IN_YEAR;
     }
 }
