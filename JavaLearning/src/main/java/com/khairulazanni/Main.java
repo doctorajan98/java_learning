@@ -3,9 +3,6 @@ package com.khairulazanni;
 import com.khairulazanni.l2_section2.Mortgage;
 import com.khairulazanni.l2_section2.ReadInput;
 
-import java.text.NumberFormat;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         var readInput = new ReadInput();
